@@ -22,10 +22,26 @@ module.exports = {
       ],
       exclude: /node_modules/,
       loader: 'babel-loader',
-      query: {
-        presets: ["es2015", "stage-0", "react"],
+    }, {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: []
+            }
+          }
+        ]
       },
-    }]
+    ]
   },
   resolve: {
     extensions: [ '.js', '.jsx' ]
